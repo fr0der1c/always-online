@@ -42,6 +42,7 @@ def check_and_login():
         driver.find_element_by_id("pwd_tip").click()
         driver.find_element_by_id("pwd").send_keys(credentials.password)
         driver.find_element_by_id("loginLink").click()
+    print('\n')
 
 
 check_and_login()
