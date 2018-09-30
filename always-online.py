@@ -35,7 +35,7 @@ def check_and_login():
 
     # 3 times all failed
     if failed_count >= 3:
-        print('哎呀...掉线了！尝试恢复...')
+        print('\n哎呀...掉线了！尝试恢复...', end='')
         driver = webdriver.Chrome()
         driver.get('http://172.16.0.101/')
         time.sleep(3)
