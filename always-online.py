@@ -27,9 +27,14 @@ def check_and_login():
         lyric_generator = get_lyric()
     print(next(lyric_generator))
 
-    # Watch website
-    exit_code = os.system('ping www.qq.com -c 1 -t 3')
-    if exit_code:
+    # Watch website for 3 times
+    failed_count = 0
+    for i in range(1, 4):
+        if os.system('ping www.qq.com -c 1 -t 2'):
+            failed_count += 1
+
+    # 3 times all failed
+    if failed_count >= 3:
         print('Network disconnected. Try to login.')
         driver = webdriver.Chrome()
         driver.get('http://172.16.0.101/')
