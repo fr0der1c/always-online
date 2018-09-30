@@ -1,5 +1,5 @@
 import time
-import os
+import subprocess
 
 import schedule
 from selenium import webdriver
@@ -30,12 +30,12 @@ def check_and_login():
     # Watch website for 3 times
     failed_count = 0
     for i in range(1, 4):
-        if os.system('ping www.qq.com -c 1 -t 2'):
+        if subprocess.call('ping www.qq.com -c 1 -t 2', shell=True, stdout=subprocess.DEVNULL):
             failed_count += 1
 
     # 3 times all failed
     if failed_count >= 3:
-        print('Network disconnected. Try to login.')
+        print('哎呀...掉线了！尝试恢复...')
         driver = webdriver.Chrome()
         driver.get('http://172.16.0.101/')
         time.sleep(3)
@@ -43,6 +43,7 @@ def check_and_login():
         driver.find_element_by_id("pwd_tip").click()
         driver.find_element_by_id("pwd").send_keys(credentials.password)
         driver.find_element_by_id("loginLink").click()
+        print('应该已经恢复啦！')
     print('\n')
 
 
