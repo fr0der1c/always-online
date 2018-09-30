@@ -21,10 +21,6 @@ def get_lyric():
 
 
 def check_and_login():
-    """
-
-    :return:
-    """
     # Show lyric
     global lyric_generator
     if lyric_generator is None:
